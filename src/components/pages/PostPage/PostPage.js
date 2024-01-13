@@ -1,8 +1,6 @@
 import { useSelector } from 'react-redux';
 import { getPostbyId } from '../../../redux/postsRedux';
 import { useParams } from 'react-router';
-// import { Navigate } from 'react-router-dom';
-import { getAllPosts } from '../../../redux/postsRedux';
 import { Card } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -10,11 +8,18 @@ import Button from 'react-bootstrap/Button';
 import { Navigate } from 'react-router-dom';
 import { removePost } from '../../../redux/postsRedux';
 import { useDispatch } from 'react-redux';
+import Modal from 'react-bootstrap/Modal';
+import { useState } from 'react';
 
 const PostPage = () => {
   const { id } = useParams();
   const postData = useSelector((state) => getPostbyId(state, id));
   const dispatch = useDispatch();
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const handleRemovePost = (e) => {
     e.preventDefault();
@@ -49,10 +54,28 @@ const PostPage = () => {
               <Button
                 variant='outline-danger'
                 style={{ marginRight: '10px', marginBottom: '5px' }}
-                onClick={handleRemovePost}
+                onClick={handleShow}
               >
                 Delete
               </Button>
+              <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Are you sure?</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  This operation will completely remove this post from the app.
+                  <br />
+                  Are you sure?
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant='secondary' onClick={handleClose}>
+                    Cancel
+                  </Button>
+                  <Button variant='danger' onClick={handleRemovePost}>
+                    Remove
+                  </Button>
+                </Modal.Footer>
+              </Modal>
             </Col>
           </Row>
           <Row className='mb-2'>
