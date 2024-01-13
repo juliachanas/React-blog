@@ -8,14 +8,18 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import { Navigate } from 'react-router-dom';
+import { removePost } from '../../../redux/postsRedux';
+import { useDispatch } from 'react-redux';
 
 const PostPage = () => {
   const { id } = useParams();
-  console.log('id:', id);
   const postData = useSelector((state) => getPostbyId(state, id));
+  const dispatch = useDispatch();
 
-  console.log('allPosts:', useSelector(getAllPosts));
-  console.log('postData:', postData);
+  const handleRemovePost = (e) => {
+    e.preventDefault();
+    dispatch(removePost(postData.id));
+  };
 
   if (!postData) return <Navigate to='/' />;
   return (
@@ -45,6 +49,7 @@ const PostPage = () => {
               <Button
                 variant='outline-danger'
                 style={{ marginRight: '10px', marginBottom: '5px' }}
+                onClick={handleRemovePost}
               >
                 Delete
               </Button>
