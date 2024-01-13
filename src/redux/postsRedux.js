@@ -1,5 +1,4 @@
 //selectors
-
 export const getAllPosts = ({ posts }) => posts;
 
 //actions
