@@ -7,6 +7,7 @@ import { Card } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import { Navigate } from 'react-router-dom';
 
 const PostPage = () => {
   const { id } = useParams();
@@ -16,6 +17,7 @@ const PostPage = () => {
   console.log('allPosts:', useSelector(getAllPosts));
   console.log('postData:', postData);
 
+  if (!postData) return <Navigate to='/' />;
   return (
     <div style={{ marginBottom: '20px' }}>
       <Card
