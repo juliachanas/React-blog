@@ -13,14 +13,17 @@ const NavBar = () => {
       <Navbar.Brand href='/' style={{ marginLeft: '0.5rem' }}>
         Blog.app
       </Navbar.Brand>
-      <Nav className='ms-auto'>
-        <Nav.Link as={NavLink} to='/'>
-          Home
-        </Nav.Link>
-        <Nav.Link as={NavLink} to='/about'>
-          About
-        </Nav.Link>
-      </Nav>
+      <Navbar.Toggle aria-controls='responsive-navbar-nav' />
+      <Navbar.Collapse id='responsive-navbar-nav'>
+        <Nav className='ms-auto'>
+          <Nav.Link as={NavLink} to='/' style={{ marginLeft: 'auto' }}>
+            Home
+          </Nav.Link>
+          <Nav.Link as={NavLink} to='/about' style={{ marginLeft: 'auto' }}>
+            About
+          </Nav.Link>
+        </Nav>
+      </Navbar.Collapse>
     </Navbar>
   );
 };
