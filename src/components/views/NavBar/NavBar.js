@@ -11,8 +11,10 @@ const NavBar = () => {
       expand='lg'
       className='mt-4 mb-4 rounded'
     >
-      <Navbar.Brand href='/'>Blog.app</Navbar.Brand>
-      <Nav className='me-auto'>
+      <Navbar.Brand href='/' style={{ marginLeft: '0.5rem' }}>
+        Blog.app
+      </Navbar.Brand>
+      <Nav className='ms-auto'>
         <Nav.Link as={NavLink} to='/'>
           Home
         </Nav.Link>
