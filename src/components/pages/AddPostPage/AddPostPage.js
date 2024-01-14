@@ -1,10 +1,10 @@
 import AddPostForm from '../../features/AddPostForm/AddPostForm';
 
-const AddPostPage = () => {
+const AddPostPage = (props) => {
   return (
-    <div>
+    <div style={{ marginLeft: '10%', marginRight: '10%' }}>
       <h1>Add Post</h1>
-      <AddPostForm />
+      <AddPostForm postId={props.id} />
     </div>
   );
 };

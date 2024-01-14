@@ -1,17 +1,51 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import addPost from '../../../redux/postsRedux';
+import { useNavigate } from 'react-router-dom';
 
-const AddPostForm = () => {
+const AddPostForm = ({ postId }) => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [publishedDate, setPublishedDate] = useState('');
   const [shortDescription, setShortDescription] = useState('');
   const [content, setContent] = useState('');
 
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Submitting form...');
+    console.log('Form data:', {
+      title,
+      author,
+      publishedDate,
+      shortDescription,
+      content,
+      postId,
+    });
+    dispatch(
+      addPost({
+        title,
+        author,
+        publishedDate,
+        shortDescription,
+        content,
+        postId,
+      })
+    );
+
+    setTitle('');
+    setAuthor('');
+    setPublishedDate('');
+    setShortDescription('');
+    setContent('');
+  };
+
   return (
-    <form style={{ marginLeft: '10%', marginRight: '10%' }}>
+    <form onSubmit={handleSubmit}>
       <Row>
         <Col sm={12} style={{ marginBottom: '10px', marginTop: '10px' }}>
           <label>Title</label>
@@ -82,7 +116,7 @@ const AddPostForm = () => {
           />
         </Col>
       </Row>
-      <Button>Add post</Button>
+      <Button type='submit'>Add post</Button>
     </form>
   );
 };
