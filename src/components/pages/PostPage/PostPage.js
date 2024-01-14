@@ -10,6 +10,7 @@ import { removePost } from '../../../redux/postsRedux';
 import { useDispatch } from 'react-redux';
 import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const PostPage = () => {
   const { id } = useParams();
@@ -44,13 +45,14 @@ const PostPage = () => {
               className='d-flex justify-content-center align-items-center'
             >
               {' '}
-              <Button
-                href={`/edit/${postData.id}`}
-                variant='outline-info'
-                style={{ marginRight: '10px', marginBottom: '5px' }}
-              >
-                Edit
-              </Button>
+              <Link to={`/edit/${postData.id}`}>
+                <Button
+                  variant='outline-info'
+                  style={{ marginRight: '10px', marginBottom: '5px' }}
+                >
+                  Edit
+                </Button>
+              </Link>
               <Button
                 variant='outline-danger'
                 style={{ marginRight: '10px', marginBottom: '5px' }}

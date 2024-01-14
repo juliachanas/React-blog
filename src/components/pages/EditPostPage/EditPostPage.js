@@ -1,7 +1,10 @@
+import EditPostForm from '../../features/EditPostForm/EditPostForm';
+
 const EditPostPage = () => {
   return (
-    <div>
-      <h1>Edit Post</h1>
+    <div style={{ marginLeft: '10%', marginRight: '10%' }}>
+      <h1>Edit post</h1>
+      <EditPostForm />
     </div>
   );
 };

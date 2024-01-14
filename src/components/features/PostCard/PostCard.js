@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { getAllPosts } from '../../../redux/postsRedux';
+import { Link } from 'react-router-dom';
 
 const PostCard = () => {
   const allPosts = useSelector(getAllPosts);
@@ -32,7 +33,9 @@ const PostCard = () => {
                 </Col>
               </Row>
               <p>{post.shortDescription}</p>
-              <Button href={`/post/${post.id}`}>Read more</Button>
+              <Link to={`/post/${post.id}`}>
+                <Button variant='primary'>Read more</Button>
+              </Link>
             </Card.Body>
           </Card>
         </Col>
