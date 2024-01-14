@@ -27,6 +27,7 @@ const AddPostForm = () => {
         content,
       })
     );
+
     navigate('/');
   };
 
