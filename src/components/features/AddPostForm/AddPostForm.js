@@ -3,10 +3,10 @@ import { useDispatch } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import addPost from '../../../redux/postsRedux';
+import { addPost } from '../../../redux/postsRedux';
 import { useNavigate } from 'react-router-dom';
 
-const AddPostForm = ({ postId }) => {
+const AddPostForm = () => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [publishedDate, setPublishedDate] = useState('');
@@ -14,18 +14,10 @@ const AddPostForm = ({ postId }) => {
   const [content, setContent] = useState('');
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Submitting form...');
-    console.log('Form data:', {
-      title,
-      author,
-      publishedDate,
-      shortDescription,
-      content,
-      postId,
-    });
     dispatch(
       addPost({
         title,
@@ -33,15 +25,9 @@ const AddPostForm = ({ postId }) => {
         publishedDate,
         shortDescription,
         content,
-        postId,
       })
     );
-
-    setTitle('');
-    setAuthor('');
-    setPublishedDate('');
-    setShortDescription('');
-    setContent('');
+    navigate('/');
   };
 
   return (
