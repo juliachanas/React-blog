@@ -32,7 +32,7 @@ const PostCard = () => {
                   {post.publishedDate}
                 </Col>
               </Row>
-              <p>{post.shortDescription}</p>
+              <p dangerouslySetInnerHTML={{ __html: post.shortDescription }} />
               <Link to={`/post/${post.id}`}>
                 <Button variant='primary'>Read more</Button>
               </Link>

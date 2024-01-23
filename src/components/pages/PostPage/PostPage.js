@@ -89,7 +89,7 @@ const PostPage = () => {
               {postData.publishedDate}
             </Col>
           </Row>
-          <p>{postData.content}</p>
+          <p dangerouslySetInnerHTML={{ __html: postData.content }} />
         </Card.Body>
       </Card>
     </div>
