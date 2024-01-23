@@ -92,7 +92,7 @@ const PostForm = ({ action, actionText, ...props }) => {
           <ReactQuill
             theme='snow'
             value={content}
-            onChange={(content) => setShortDescription(content)}
+            onChange={(content) => setContent(content)}
           />
         </Col>
       </Row>
