@@ -2,6 +2,8 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const PostForm = ({ action, actionText, ...props }) => {
   const [title, setTitle] = useState(props.title || '');
@@ -73,12 +75,12 @@ const PostForm = ({ action, actionText, ...props }) => {
           <label>Short description</label>
         </Col>
         <Col sm={12} style={{ marginBottom: '10px', marginTop: '10px' }}>
-          <textarea
+          <ReactQuill
+            theme='snow'
             value={shortDescription}
-            onChange={(e) => setShortDescription(e.target.value)}
-            placeholder='Leave a comment here..'
-            type='text'
-            style={{ width: '100%', minHeight: '200px' }}
+            onChange={(shortDescription) =>
+              setShortDescription(shortDescription)
+            }
           />
         </Col>
       </Row>
@@ -87,12 +89,10 @@ const PostForm = ({ action, actionText, ...props }) => {
           <label>Main content</label>
         </Col>
         <Col sm={12} style={{ marginBottom: '10px', marginTop: '10px' }}>
-          <textarea
+          <ReactQuill
+            theme='snow'
             value={content}
-            onChange={(e) => setContent(e.target.value)}
-            placeholder='Leave a comment here..'
-            type='text'
-            style={{ width: '100%', minHeight: '300px' }}
+            onChange={(content) => setShortDescription(content)}
           />
         </Col>
       </Row>

@@ -1,16 +1,9 @@
-import { useSelector } from 'react-redux';
-import { getPostbyId } from '../../../redux/postsRedux';
+import { useSelector, useDispatch } from 'react-redux';
+import { getPostbyId, removePost } from '../../../redux/postsRedux';
 import { useParams } from 'react-router';
-import { Card } from 'react-bootstrap';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
-import { Navigate } from 'react-router-dom';
-import { removePost } from '../../../redux/postsRedux';
-import { useDispatch } from 'react-redux';
-import Modal from 'react-bootstrap/Modal';
+import { Card, Row, Col, Modal, Button } from 'react-bootstrap';
+import { Navigate, Link } from 'react-router-dom';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 const PostPage = () => {
   const { id } = useParams();
