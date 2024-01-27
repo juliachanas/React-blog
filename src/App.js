@@ -12,6 +12,7 @@ import NotFound from './components/pages/NotFound/NotFound';
 import Header from './components/views/Header/Header';
 import Footer from './components/views/Footer/Footer';
 import CategoriesPage from './components/pages/CategoriesPage/CategoriesPage';
+import SelectedCategoryPage from './components/pages/SelectedCategoryPage/SelectedCategoryPage';
 
 const App = () => (
   <Provider store={store}>
@@ -21,6 +22,10 @@ const App = () => (
         <Routes>
           <Route path='/' element={<Homepage />} />
           <Route path='/categories' element={<CategoriesPage />} />
+          <Route
+            path='categories/:categoryName'
+            element={<SelectedCategoryPage />}
+          />
           <Route path='/post/:id' element={<PostPage />} />
           <Route path='/add' element={<AddPostPage />} />
           <Route path='/edit/:id' element={<EditPostPage />} />
