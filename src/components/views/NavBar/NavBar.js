@@ -19,6 +19,13 @@ const NavBar = () => {
           <Nav.Link as={NavLink} to='/' style={{ marginLeft: 'auto' }}>
             Home
           </Nav.Link>
+          <Nav.Link
+            as={NavLink}
+            to='/categories'
+            style={{ marginLeft: 'auto' }}
+          >
+            Categories
+          </Nav.Link>
           <Nav.Link as={NavLink} to='/about' style={{ marginLeft: 'auto' }}>
             About
           </Nav.Link>
