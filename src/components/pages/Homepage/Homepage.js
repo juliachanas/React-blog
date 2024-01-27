@@ -3,8 +3,12 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { getAllPosts } from '../../../redux/postsRedux';
 
 const Homepage = () => {
+  const posts = useSelector(getAllPosts);
+
   return (
     <div>
       <Row className='mb-3'>
@@ -17,7 +21,7 @@ const Homepage = () => {
           </Link>
         </Col>
       </Row>
-      <PostCard />
+      <PostCard allPosts={posts} />
     </div>
   );
 };

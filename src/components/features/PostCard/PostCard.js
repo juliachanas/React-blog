@@ -1,15 +1,11 @@
-import { useSelector } from 'react-redux';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { getAllPosts } from '../../../redux/postsRedux';
 import { Link } from 'react-router-dom';
 import { dateToStr } from '../../../utlis/dateToStr';
 
-const PostCard = () => {
-  const allPosts = useSelector(getAllPosts);
-
+const PostCard = ({ allPosts }) => {
   return (
     <Row>
       {allPosts.map((post) => (
