@@ -4,11 +4,12 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const PostForm = ({ action, actionText, ...props }) => {
   const [title, setTitle] = useState(props.title || '');
   const [author, setAuthor] = useState(props.author || '');
-
   const [publishedDate, setPublishedDate] = useState(props.publishedDate || '');
   const [shortDescription, setShortDescription] = useState(
     props.shortDescription || ''
@@ -61,13 +62,21 @@ const PostForm = ({ action, actionText, ...props }) => {
           <label>Published</label>
         </Col>
         <Col sm={12} style={{ marginBottom: '10px', marginTop: '10px' }}>
-          <input
+          <DatePicker
+            selected={publishedDate}
+            onChange={(date) => setPublishedDate(date)}
+            placeholderText='Enter date..'
+            dateFormat='MM/dd/yyyy'
+            style={{ width: '50%' }}
+          />
+
+          {/* <input
             value={publishedDate}
             onChange={(e) => setPublishedDate(e.target.value)}
             placeholder='Enter date..'
             type='text'
             style={{ width: '50%' }}
-          />
+          /> */}
         </Col>
       </Row>
       <Row>
