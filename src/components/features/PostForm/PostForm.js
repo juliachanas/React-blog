@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -36,7 +34,7 @@ const PostForm = ({ action, actionText, ...props }) => {
   };
 
   return (
-    <form onSubmit={validate(handleSubmit)}>
+    <Form onSubmit={validate(handleSubmit)}>
       <Form.Group className='mb-3' controlId='formBasicEmail'>
         <Form.Label>Title</Form.Label>
         <Form.Control
@@ -70,20 +68,19 @@ const PostForm = ({ action, actionText, ...props }) => {
         )}
       </Form.Group>
 
-      <Row>
-        <Col sm={12} style={{ marginBottom: '10px', marginTop: '10px' }}>
-          <label>Published</label>
-        </Col>
-        <Col sm={12} style={{ marginBottom: '10px', marginTop: '10px' }}>
-          <DatePicker
-            selected={publishedDate}
-            onChange={(date) => setPublishedDate(date)}
-            placeholderText='Enter date..'
-            dateFormat='MM/dd/yyyy'
-            style={{ width: '50%' }}
-          />
-        </Col>
-      </Row>
+      <Form.Group
+        controlId='formPublishedDate'
+        style={{ marginBottom: '10px', marginTop: '10px' }}
+      >
+        <Form.Label>Published Date</Form.Label>
+        <DatePicker
+          selected={publishedDate}
+          onChange={(date) => setPublishedDate(date)}
+          placeholderText='Enter date..'
+          dateFormat='MM/dd/yyyy'
+        />
+      </Form.Group>
+
       <Form.Group className='mb-3' controlId='formBasicEmail'>
         <Form.Label>Short description</Form.Label>
         <Form.Control
@@ -100,20 +97,20 @@ const PostForm = ({ action, actionText, ...props }) => {
         )}
       </Form.Group>
 
-      <Row>
-        <Col sm={12} style={{ marginBottom: '10px', marginTop: '10px' }}>
-          <label>Main content</label>
-        </Col>
-        <Col sm={12} style={{ marginBottom: '10px', marginTop: '10px' }}>
-          <ReactQuill
-            theme='snow'
-            value={content}
-            onChange={(content) => setContent(content)}
-          />
-        </Col>
-      </Row>
+      <Form.Group
+        controlId='formContent'
+        style={{ marginBottom: '10px', marginTop: '10px' }}
+      >
+        <Form.Label>Main Content</Form.Label>
+        <ReactQuill
+          theme='snow'
+          value={content}
+          onChange={(content) => setContent(content)}
+        />
+      </Form.Group>
+
       <Button type='submit'>{actionText}</Button>
-    </form>
+    </Form>
   );
 };
 
