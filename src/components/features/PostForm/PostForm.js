@@ -21,24 +21,23 @@ const PostForm = ({ action, actionText, ...props }) => {
     props.shortDescription || ''
   );
   const [content, setContent] = useState(props.content || '');
+  const [contentError, setContentError] = useState(false);
+  const [dateError, setDateError] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    action({
-      title,
-      author,
-      publishedDate,
-      shortDescription,
-      content,
-    });
+  const handleSubmit = () => {
+    setContentError(!content);
+    setDateError(!publishedDate);
+    if (content && publishedDate) {
+      action({ title, author, publishedDate, shortDescription, content });
+    }
   };
 
   return (
     <Form onSubmit={validate(handleSubmit)}>
-      <Form.Group className='mb-3' controlId='formBasicEmail'>
+      <Form.Group className='mb-3' controlId='formTitle'>
         <Form.Label>Title</Form.Label>
         <Form.Control
-          {...register('title', { required: true, minLength: 4 })}
+          {...register('title', { required: true, minLength: 3 })}
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           type='text'
@@ -47,14 +46,14 @@ const PostForm = ({ action, actionText, ...props }) => {
         />
         {errors.title && (
           <small className='d-block form-text text-danger mt-2'>
-            This field is required
+            Title is too short (min: 3)
           </small>
         )}
       </Form.Group>
-      <Form.Group className='mb-3' controlId='formBasicEmail'>
+      <Form.Group className='mb-3' controlId='formAuthor'>
         <Form.Label>Author</Form.Label>
         <Form.Control
-          {...register('author', { required: true, minLength: 4 })}
+          {...register('author', { required: true, minLength: 3 })}
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
           type='text'
@@ -63,7 +62,7 @@ const PostForm = ({ action, actionText, ...props }) => {
         />
         {errors.author && (
           <small className='d-block form-text text-danger mt-2'>
-            This field is required
+            Author is too short (min: 3)
           </small>
         )}
       </Form.Group>
@@ -79,12 +78,17 @@ const PostForm = ({ action, actionText, ...props }) => {
           placeholderText='Enter date..'
           dateFormat='MM/dd/yyyy'
         />
+        {dateError && (
+          <small className='d-block form-text text-danger mt-2'>
+            Date is required
+          </small>
+        )}
       </Form.Group>
 
-      <Form.Group className='mb-3' controlId='formBasicEmail'>
+      <Form.Group className='mb-3' controlId='formShortDescription'>
         <Form.Label>Short description</Form.Label>
         <Form.Control
-          {...register('shortDescription', { required: true, minLength: 21 })}
+          {...register('shortDescription', { required: true, minLength: 20 })}
           value={shortDescription}
           onChange={(e) => setShortDescription(e.target.value)}
           type='text'
@@ -92,7 +96,7 @@ const PostForm = ({ action, actionText, ...props }) => {
         />
         {errors.shortDescription && (
           <small className='d-block form-text text-danger mt-2'>
-            This field is required
+            Short description is too short (min: 20)
           </small>
         )}
       </Form.Group>
@@ -107,8 +111,12 @@ const PostForm = ({ action, actionText, ...props }) => {
           value={content}
           onChange={(content) => setContent(content)}
         />
+        {contentError && (
+          <small className='d-block form-text text-danger mt-2'>
+            Content can't be empty
+          </small>
+        )}
       </Form.Group>
-
       <Button type='submit'>{actionText}</Button>
     </Form>
   );
