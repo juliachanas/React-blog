@@ -5,7 +5,7 @@ const initialState = {
       title: 'How to be happy',
       shortDescription: 'Short description of the article...',
       content: 'Main content of the article',
-      publishedDate: '02-02-2022',
+      publishedDate: new Date('02-02-2022'),
       author: 'John Doe',
     },
     {
@@ -13,7 +13,7 @@ const initialState = {
       title: 'All about stress',
       shortDescription: 'Short description of the article...',
       content: 'Main content of the article',
-      publishedDate: '04-05-2023',
+      publishedDate: new Date('04-05-2023'),
       author: 'Minni Mii',
     },
     {
@@ -21,7 +21,7 @@ const initialState = {
       title: 'I am strong',
       shortDescription: 'Short description of the article...',
       content: 'Main content of the article',
-      publishedDate: '05-04-2024',
+      publishedDate: new Date('05-10-2023'),
       author: 'Eleonor Bee',
     },
   ],
