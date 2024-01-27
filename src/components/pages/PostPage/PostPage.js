@@ -90,6 +90,14 @@ const PostPage = () => {
               {dateToStr(postData.publishedDate)}
             </Col>
           </Row>
+          <Row className='mb-2'>
+            <Col xs={6} sm={6} md={4} lg={5}>
+              <strong>Category:</strong>
+            </Col>
+            <Col xs={6} sm={6} md={8} lg={7}>
+              {postData.category}
+            </Col>
+          </Row>
           <p dangerouslySetInnerHTML={{ __html: postData.content }} />
         </Card.Body>
       </Card>

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import ReactQuill from 'react-quill';
@@ -6,6 +7,7 @@ import 'react-quill/dist/quill.snow.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useForm } from 'react-hook-form';
+import { getAllCategories } from '../../../redux/categoryRedux';
 
 const PostForm = ({ action, actionText, ...props }) => {
   const {
@@ -14,9 +16,13 @@ const PostForm = ({ action, actionText, ...props }) => {
     formState: { errors },
   } = useForm();
 
+  const categories = useSelector(getAllCategories);
+
   const [title, setTitle] = useState(props.title || '');
   const [author, setAuthor] = useState(props.author || '');
   const [publishedDate, setPublishedDate] = useState(props.publishedDate || '');
+  const [category, setCategory] = useState(props.category || '');
+
   const [shortDescription, setShortDescription] = useState(
     props.shortDescription || ''
   );
@@ -72,6 +78,7 @@ const PostForm = ({ action, actionText, ...props }) => {
         style={{ marginBottom: '10px', marginTop: '10px' }}
       >
         <Form.Label>Published Date</Form.Label>
+
         <DatePicker
           selected={publishedDate}
           onChange={(date) => setPublishedDate(date)}
@@ -83,6 +90,24 @@ const PostForm = ({ action, actionText, ...props }) => {
             Date is required
           </small>
         )}
+      </Form.Group>
+
+      <Form.Group
+        controlId='formCategory'
+        // style={{ marginBottom: '10px', marginTop: '10px' }}
+      >
+        <Form.Label>Category</Form.Label>
+        <Form.Select
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+        >
+          <option value=''>Select a category...</option>
+          {categories.map((category) => (
+            <option key={category.id} value={category.id}>
+              {category.name}
+            </option>
+          ))}
+        </Form.Select>
       </Form.Group>
 
       <Form.Group className='mb-3' controlId='formShortDescription'>
