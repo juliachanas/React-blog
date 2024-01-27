@@ -4,6 +4,7 @@ import { useParams } from 'react-router';
 import { Card, Row, Col, Modal, Button } from 'react-bootstrap';
 import { Navigate, Link } from 'react-router-dom';
 import { useState } from 'react';
+import { dateToStr } from '../../../utlis/dateToStr';
 
 const PostPage = () => {
   const { id } = useParams();
@@ -86,7 +87,7 @@ const PostPage = () => {
               <strong>Published:</strong>
             </Col>
             <Col xs={6} sm={6} md={8} lg={7}>
-              {postData.publishedDate}
+              {dateToStr(postData.publishedDate)}
             </Col>
           </Row>
           <p dangerouslySetInnerHTML={{ __html: postData.content }} />

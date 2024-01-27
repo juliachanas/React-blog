@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { getAllPosts } from '../../../redux/postsRedux';
 import { Link } from 'react-router-dom';
+import { dateToStr } from '../../../utlis/dateToStr';
 
 const PostCard = () => {
   const allPosts = useSelector(getAllPosts);
@@ -29,7 +30,7 @@ const PostCard = () => {
                   <strong>Published:</strong>
                 </Col>
                 <Col xs={6} sm={6} md={8} lg={7}>
-                  {post.publishedDate}
+                  {dateToStr(post.publishedDate)}
                 </Col>
               </Row>
               <p dangerouslySetInnerHTML={{ __html: post.shortDescription }} />
