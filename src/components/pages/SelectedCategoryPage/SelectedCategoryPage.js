@@ -14,7 +14,7 @@ const SelectedCategoryPage = () => {
   return (
     <div className='container'>
       <h1 style={{ marginBottom: '1.5rem' }}>Category: {categoryName}</h1>
-      {filteredPosts && <PostCard allPosts={filteredPosts} />}
+      {!!filteredPosts.length && <PostCard allPosts={filteredPosts} />}
       {!filteredPosts.length && <p>No posts found in this category.</p>}
     </div>
   );
