@@ -7,11 +7,10 @@ import { getPostsByCategory } from '../../../redux/categoryRedux';
 const SelectedCategoryPage = () => {
   const { categoryName } = useParams();
 
-  const filteredPosts = useSelector(
-    (state) => getPostsByCategory(state, categoryName) || []
+  const filteredPosts = useSelector((state) =>
+    getPostsByCategory(state, categoryName)
   );
 
-  console.log('filteredPosts', filteredPosts);
   return (
     <div className='container'>
       <h1 style={{ marginBottom: '1.5rem' }}>Category: {categoryName}</h1>
