@@ -1,8 +1,8 @@
 //selectors
 
 export const getAllCategories = ({ categories }) => categories;
-export const getPostByCategory = ({ posts }, category) =>
-  posts.find((post) => post.category === category);
+export const getPostsByCategory = ({ posts }, category) =>
+  posts.filter((post) => post.category === category);
 
 //reducer
 
